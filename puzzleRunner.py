@@ -59,8 +59,9 @@ def solvePuzzle(moves):
             print("Correct Move ")
             print()
         else:
-            print(f"Incorrect Move, Correct Move is {arr[idx]} ")
+            print(f"Incorrect Move, Correct Solution is {moves} ")
             print()
+            return False
         
         idx += 1 
         if idx == len(arr):
@@ -70,6 +71,8 @@ def solvePuzzle(moves):
         print(f"Opponent played {arr[idx]} ")
         print()
         idx += 1 
+
+    return True
 
 def getRatingGroup(rating):
     low = rating//100
@@ -88,12 +91,14 @@ def verbalProblem():
         location = database[ratingid]["location"]
         database[ratingid]["location"] += 1 # increment location by one so we never see same puzzle 
         puzzle = puzzles[location]
-        stats["problem_history"].append(puzzle) # append current puzz to history
         fen,moves = UciToSan(puzzle)
 
+        print(f"Current rating is {rating}")
         printLocations()
-        solvePuzzle(moves)
-        
+        result = solvePuzzle(moves)
+        historyNote = (puzzle[0],puzzle[1],result)
+        stats["problem_history"].append(historyNote) # append current puzz to history
+        stats["rating"] = rating + 10 if result else rating - 10
         check = input("Would you quit to continue? (Y/n): ")
         done = True if check.lower() == "y" else False
         print()
