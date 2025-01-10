@@ -21,3 +21,6 @@ def generateStats(game): # here we want to add to the JSON file of stats
     # use stockfish to generate a centipawn lose.
     # get the eco code and extract it 
 
+
+
+
