@@ -3,7 +3,7 @@ import random
 
 
 def knight(move): # will generate two squares, user will input series of squares to go from on to the next 
-    
+
 
 
 
