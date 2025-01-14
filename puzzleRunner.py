@@ -1,8 +1,8 @@
 import chess 
 import collections
 import json
-SOURCE = "/home/tomjan/Projects/Py/TCIT/media/database.json"
-STATS = "/home/tomjan/Projects/Py/TCIT/data/puzzleStats.json"
+SOURCE = "/home/tomjan/Projects/TCIT/media/database.json"
+STATS = "/home/tomjan/Projects/TCIT/data/puzzleStats.json"
 with open(SOURCE,"r") as f:
     database = json.load(f)
 with open(STATS,"r") as f:
