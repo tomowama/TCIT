@@ -49,6 +49,10 @@ def pickSquares(board:str,bishop: bool):
     loc2, color2  =locator(board,sq2)
     return loc1,loc2
 
+def getColor(board): # returns the square name and the color useful for guessing the squares
+    loc,_ = pickSquares(board,False)
+    san = boardLocToSan(board,loc)
+    return san,board[loc]
 def bishopMove(board,sq):
     moves = [11,13,-11,-13]
     ans = []
@@ -118,20 +122,12 @@ def knightConnect(board,start,end):
 def knight(board): # will generate two squares, user will input series of squares to go from on to the next 
     sq1,sq2 = pickSquares(board,False)
     check = knightConnect(board,sq1,sq2) # this give the minimum ammount of moves to reach this square
-    ans = f"""
-    How many turns to move a knight from {boardLocToSan(board,sq1)} to {boardLocToSan(board,sq2)}
-    Answer is {check}
-    """    
-    return ans.strip()
+    return sq1,sq2,check # returns squares and answer
 
 def bishop(board): # will generate two random square, then the user will need to find the closes square connecting both
     sq1,sq2 = pickSquares(board,True)
     check = bishopsConnect(board,sq1,sq2)
-    ans = f"""
-    How many squares between two bishops (traveling as a bishop) on {boardLocToSan(board,sq1)} and {boardLocToSan(board,sq2)}
-    Answer is {check}
-    """
-    return ans
+    return sq1,sq2,check # returns the squares and  answer
 
 
 
