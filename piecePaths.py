@@ -2,12 +2,7 @@ import random
 import collections
 ## we will move pieces around blindfolded
 
-
 board = "..........................bwbwbwbw....wbwbwbwb....bwbwbwbw....wbwbwbwb....bwbwbwbw....wbwbwbwb....bwbwbwbw....wbwbwbwb.........................."
-
-
-
-    
 
 def numToSan(board,num): # goes from 0-63 to a san location
     mod = num % 8 
@@ -53,6 +48,7 @@ def getColor(board): # returns the square name and the color useful for guessing
     loc,_ = pickSquares(board,False)
     san = boardLocToSan(board,loc)
     return san,board[loc]
+
 def bishopMove(board,sq):
     moves = [11,13,-11,-13]
     ans = []
@@ -122,12 +118,21 @@ def knightConnect(board,start,end):
 def knight(board): # will generate two squares, user will input series of squares to go from on to the next 
     sq1,sq2 = pickSquares(board,False)
     check = knightConnect(board,sq1,sq2) # this give the minimum ammount of moves to reach this square
+    sq1,sq2 = boardLocToSan(board,sq1), boardLocToSan(board,sq2)
     return sq1,sq2,check # returns squares and answer
 
 def bishop(board): # will generate two random square, then the user will need to find the closes square connecting both
     sq1,sq2 = pickSquares(board,True)
     check = bishopsConnect(board,sq1,sq2)
+    sq1,sq2 = boardLocToSan(board,sq1), boardLocToSan(board,sq2)
     return sq1,sq2,check # returns the squares and  answer
+
+
+def randomRoute(board):
+    choice = random.choice([True,False])
+    if choice:
+        return "knight",knight(board)
+    return "bishop",bishop(board)
 
 
 

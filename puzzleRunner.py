@@ -117,15 +117,4 @@ def verbalProblem():
 
 
 
-verbalProblem()
-
-
-
-
-
-
-
-
-
-
-
+# verbalProblem()
