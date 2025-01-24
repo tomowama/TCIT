@@ -79,10 +79,9 @@ def getRatingGroup(rating):
     high = low+1
     return f"{low*100}-{high*100}"
 
-def verbalProblem():
-    
+def interactivePuzzle(limit):
     done = False
-    while not done:
+    for i in range(limit):
         print("New problem: ")
         print("------------------------")
         rating = stats["rating"]
@@ -99,9 +98,12 @@ def verbalProblem():
         historyNote = (puzzle[0],puzzle[1],result)
         stats["problem_history"].append(historyNote) # append current puzz to history
         stats["rating"] = rating + 10 if result else rating - 10
-        check = input("Would you quit to continue? (Y/n): ")
+        check = input("Would you like to quit? (Y/n): ")
         done = True if check.lower() == "y" else False
         print()
+        if done:
+            print("Breaking now")
+            break
 
     # write to jsons    
     with open(SOURCE,"w") as f:
@@ -115,6 +117,3 @@ def verbalProblem():
 
 
 
-
-
-# verbalProblem()

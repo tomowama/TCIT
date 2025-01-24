@@ -134,5 +134,21 @@ def randomRoute(board):
         return "knight",knight(board)
     return "bishop",bishop(board)
 
+def interactiveRoutes(board,limit):
+    for route in range(limit):
+        piece,problem= randomRoute(board) 
+        sq1,sq2,ans = problem
+        print(f"Route number {route +1}")
+        guess = input(f"We have a {piece} on {sq1} how many steps to move it to {sq2}?\n")
+        if int(guess) == int(ans):
+            print("Correct!")
+        else:
+            print(f"Wrong, the correct answer is {ans}")
+        print()
+
+
+
+
+
 
 
